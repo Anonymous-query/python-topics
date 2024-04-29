@@ -1,0 +1,43 @@
+-> In Python, a circular reference occurs when two or more objects hold references to each other. This creates a cycle where neither object can be garbage collected because each one keeps the other alive in memory.
+-> Circular references keep objects in loops from being released even if they are no longer reachable or in use.
+
+They can potentially:
+    1. Lead to memory leak:
+    2. Cause issues with object destruction
+
+"""
+self-referential
+"""
+>>> listy = listy[0] = [1,2]
+>>> listy
+[[...], 2]
+
+# Here is a triple assignment listy equals listy index zero equals [1, 2] python will first look at the extreme left and extreme right values and set the extreme right equal to the extreme left.
+# So first of all, we'll have a listy equal to [1, 2].
+  listy = [1, 2]
+# Then Python will look at this intermediate value listy[0] and say, hey we should set [1, 2] as well. But we've already set listy to be [1, 2] so what Python will do is set listy[0] to listy and you'll end up with this [[...], 2]
+  listy[0] = listy
+
+# The reference assigning then updates the reference object and will update the original object itself also
+>>> a = [1, 2]
+>>> b = a
+>>> b[0] = 3
+>>> b
+[3, 2]
+>>> a
+[3, 2]
+
+# If you want to fix this use the copy module of Python (from copy import copy)
+  a = [1,2]
+  b = copy(a)
+
+############ {} circular ref ############
+>>> k, h = k[h] = {}, 4
+>>> k
+{4: ({...}, 4)}
+
+-> Hey but what are three dots?
+    The three dots are called ellipsis
+>>> ...
+Ellipsis
+
